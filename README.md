@@ -66,7 +66,7 @@ Solo para p = 7 esta condición se satisface. Para otros primos, el sistema no t
 
 ---
 
-### 3. `TdP_MCMC_PRODUCTION_FERMIONS_v1.6.py` — El Medidor del ADN de Gaia
+### 3. `TdP_MCMC_TdP_MCMC_Fitter_Final.py` — El Medidor del ADN de Gaia
 
 **Propósito**:  
 Implementa un ajuste bayesiano completo (MCMC) de las masas de los 12 fermiones del Modelo Estándar usando la estructura jerárquica de la TdP.
