@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # =============================================================================
-# TdP_MCMC_PRODUCTION_FERMIONS v1.6.py - Versión Final Corregida
+# TdP_MCMC_TdP_MCMC_Fitter_Final.py - Versión Final Corregida
 # Teoría del Pellizco - Implementación Confiable
 # =============================================================================
 
@@ -355,4 +355,5 @@ else:
     print(f"Base p-ádica (p) = {p_most_probable} (probabilidad: {p_prob*100:.1f}%)")
     print(f"Exponente fractal (α) = {alpha_mean:.5f} ± {alpha_std:.5f}")
     print(f"Valor teórico esperado: p=7, α=1/φ≈0.61803")
+
 print("\n🔥 ¡LA TEORÍA DEL PELLIZCO HA SIDO VALIDADA CON ÉXITO! 🔥")
