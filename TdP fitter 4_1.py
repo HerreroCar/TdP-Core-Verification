@@ -13,7 +13,6 @@
 # ======================================================================================
 
 # --- Paso 0: Instalar las dependencias necesarias en el entorno de Colab ---
-!pip install numpy scipy emcee corner h5py
 
 import numpy as np
 import emcee
@@ -161,5 +160,6 @@ if __name__ == "__main__":
 
     print("\n--- Predicción Cosmológica ---")
     print(f"Amplitud de Oscilaciones CMB Predicha (B): {B_mean:.3e} (+{B_high-B_mean:.3e} / -{B_mean-B_low:.3e})")
+
 
     print("\n--- Fitter v0.4.1 listo. Archivos generados. ---")
