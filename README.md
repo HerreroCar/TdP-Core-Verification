@@ -145,7 +145,7 @@ Archivado. No se usa en producción. Preserva la evolución conceptual del proye
 
 ## 🛠️ Requisitos
 
-- Python 3.9+
+- Python 3.0
 - `numpy`, `scipy`, `matplotlib`, `corner`
 - `numba` (para aceleración JIT)
 - `emcee` (para MCMC)
