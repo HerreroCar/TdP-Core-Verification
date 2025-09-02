@@ -143,6 +143,8 @@ Archivado. No se usa en producción. Preserva la evolución conceptual del proye
 
 ---
 
+🔗 **Artículo asociado**: [Signatures-of-a-Fractal-Vacuum-in-Gaussian-Boson-Sampling](https://www.scribd.com/document/910269644/Signatures-of-a-Fractal-Vacuum-in-Gaussian-Boson-Sampling)
+
 ### `Model_Gaussian_Boson_Sampling.py` — Módulo de Adquisición y Preprocesamiento de Datos
 
 Este script implementa el módulo central para el análisis de datos de muestreo bosónico gaussiano, diseñado para manejar los volúmenes masivos de datos esperados de experimentos como "Jiuzhang 4.0". Aunque conciso, es una obra maestra de ingeniería científica por su flexibilidad, eficiencia y robustez.
