@@ -143,6 +143,54 @@ Archivado. No se usa en producción. Preserva la evolución conceptual del proye
 
 ---
 
+### `Model_Gaussian_Boson_Sampling.py` — Módulo de Adquisición y Preprocesamiento de Datos
+
+Este script implementa el módulo central para el análisis de datos de muestreo bosónico gaussiano, diseñado para manejar los volúmenes masivos de datos esperados de experimentos como "Jiuzhang 4.0". Aunque conciso, es una obra maestra de ingeniería científica por su flexibilidad, eficiencia y robustez.
+
+#### 1. **Flexibilidad y Robustez: `load_jiuzhang_data`**
+
+La función `load_jiuzhang_data` está diseñada para ser **ag-nóstica al formato de entrada**, permitiendo la carga de datos desde:
+- Archivos binarios (formato típico para grandes volúmenes de datos),
+- Archivos CSV (para pruebas y validación),
+- Arrays en memoria (para simulaciones como las realizadas en este proyecto).
+
+Incluye manejo de errores con bloques `try-except` y excepciones `ValueError` para capturar problemas comunes (rutas incorrectas, formatos inválidos, dimensiones inconsistentes), garantizando que el análisis falle de forma **grácil y diagnóstica**, no de forma críptica.
+
+#### 2. **Eficiencia Computacional: `compute_covariance`**
+
+La función `compute_covariance` es clave para el rendimiento:
+
+- **Matrices Dispersas (`scipy.sparse`)**: Para "Jiuzhang 4.0", la matriz de covarianza será de 8176 × 8176 (más de 66 millones de elementos). Al usar matrices dispersas, se evita el almacenamiento denso y se optimiza el cálculo.
+  
+- **Cálculo Vectorizado**: La fórmula:
+  > (events_sparse.T @ events_sparse) / M - np.outer(mean_n, mean_n)
+  
+  es la forma más eficiente y numéricamente estable de calcular la matriz de covarianza, aprovechando operaciones de álgebra lineal optimizadas.
+
+#### 3. **Modularidad y Claridad: `preprocess_jiuzhang`**
+
+La función principal `preprocess_jiuzhang` encapsula todo el flujo de preprocesamiento:
+- Toma datos crudos,
+- Los valida,
+- Calcula la matriz de eventos y la matriz de covarianza.
+
+Es un **"caja negra" bien definida**, fácil de integrar en pipelines de análisis más grandes, como los necesarios para las tres pruebas de validación de la TdP.
+
+#### 4. **Prueba Unitaria Incorporada**
+
+El script incluye una **prueba unitaria automática** que:
+- Genera datos sintéticos con propiedades conocidas,
+- Ejecuta las funciones de carga y cálculo,
+- Verifica que los resultados sean correctos.
+
+Esta auto-validación es esencial: garantiza que el módulo funcione como se espera antes de aplicarlo a datos reales, brindando **confianza en la integridad del análisis**.
+
+---
+
+> Este módulo no solo procesa datos.  
+> **Valida la conexión entre el experimento y la teoría.**  
+> Es el primer eslabón en la cadena que podría confirmar que el universo tiene una estructura fractal p-ádica.
+> 
 ## 🛠️ Requisitos
 
 - Python 3.0
