@@ -30,7 +30,9 @@ Cada script es un **experimento teórico** que prueba una pieza del marco TdP.
 
 ---
 
-## 🧪 Detalle del Repositorio ( Incluida la ejecución en el notebook: https://github.com/HerreroCar/TdP-Core-Verification/blob/main/TdP_Core_Verification.ipynb)
+## 🧪 Detalle del Repositorio ( Incluida la ejecución en el notebook: 
+
+* https://github.com/HerreroCar/TdP-Core-Verification/blob/main/TdP_Core_Verification.ipynb)
 
 
 ### 1. `TdP_sweep_kappa_refined.py` — El Calibrador Dimensional
