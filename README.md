@@ -54,17 +54,39 @@ Encuentra un único valor κ* ≈ 1.092444 para el cual d_eff = 4.000000 ± 1×1
 ### 2. `algoritmo_parametros_universales.py` — El Solver de Puntos Fijos (Conceptual)
 
 **Propósito**:  
-Simula el flujo del Grupo de Renormalización Fractal para los acoplamientos gauge g₁, g₂, g₃. Demuestra conceptualmente el **Teorema 3.1**, que afirma que solo para p = 7 existe un punto fijo unificado no trivial.
 
-**Metodología**:  
-Las funciones beta se derivan de la expansión del Heat Kernel:
-> β(gᵢ) = – [bᵢ(p) / (4π)²] gᵢ³ + [Cᵢ(p, α) / (4π)⁴] gᵢ⁵ + …
+Este módulo fija, **sin simulaciones ni MCMC**, los **parámetros universales** de la Teoría del Pellizco (TdP):
 
-Se analiza la condición de unificación:
-> b₁(p)/C₁(p, α*) = b₂(p)/C₂(p, α*) = b₃(p)/C₃(p, α*)
+- **p\* = 7**, por **conmensurabilidad espectral exacta** entre la dilatación geométrica del triple espectral fractal (árbol 7‑ádico) y la dilatación p‑ádica de los acoplos.
+- **α\* = 1/φ**, por **inconmensurabilidad óptima** (Hurwitz/Lagrange): el valor que **maximiza la mala aproximabilidad** por racionales y evita resonancias discretas entre niveles.
 
-**Resultado**:  
-Solo para p = 7 esta condición se satisface. Para otros primos, el sistema no tiene solución unificada. Esto justifica por qué el universo "elige" p = 7 como su base topológica fundamental.
+## 1) ¿Por qué *p = 7*?
+
+El sustrato geométrico de TdP es un triple espectral \((A,H,D)\) con álgebra asociada al **grupo de Prüfer** \(Z(7)^\infty\) (estructura 7‑ádica). La **igualación de escalas** exige
+\[
+\ln p = \ln 7 \quad\Rightarrow\quad p=7,
+\]
+es decir, la **dilatación p‑ádica** del acoplamiento debe coincidir con la **dilatación geométrica** del árbol 7‑ádico. El script certifica esto de forma aritmética: \(p^\*=\arg\min_{p\in\mathbb P}|\ln p-\ln 7|\) con **único cero** en \(p=7\).  
+**Referencias**: Acción Espectral (Connes–Chamseddine) para obtener GR + Yang–Mills–Higgs desde \((A,H,D)\) [^connes]; grupo de Prüfer y estructura p‑ádica [^prufer].
+
+## 2) ¿Por qué *α = 1/φ*?
+
+La estabilidad global del punto fijo del **RG fractal** requiere suprimir resonancias discretas entre escalas. En aproximación diofántica, el **“peor” aproximable** por racionales (máxima “dureza”) es la **razón áurea**, cuya constante de Lagrange es
+\[
+\lambda(\alpha)=\liminf_{q\to\infty} q\,\|q\alpha\|, \qquad
+\sup_\alpha \lambda(\alpha)=\frac{1}{\sqrt{5}},
+\]
+alcanzado precisamente en la clase áurea (salvo transformaciones fraccionarias). Por simetría y naturalidad dimensional, TdP toma **α = 1/φ**. El script implementa la métrica canónica **\(\lambda_Q(\alpha)=\min_{q\le Q}q\,\|q\alpha\|\)**, determinista, y muestra que el **máximo** en la rejilla aparece en **\(1/φ\)**, consistente con la cota \(1/\sqrt{5}\).  
+**Referencias**: Teorema de **Hurwitz** y literatura asociada [^hurwitz-wiki] [^hurwitz-mw].
+
+## 3) Verificación geométrica (no estocástica)
+
+Como *cross‑check* se calcula \(d_{\rm eff}(t)=-2\,\frac{d}{d\log t}\log{\rm Tr}\,e^{-tD^2}\) para un **operador tridiagonal jerárquico refinado** (escalado **mid‑bond**), con **suavizado gaussiano** en \(\log t\) (determinista) para reducir artefactos. Se reporta:
+- **\(\kappa^\*\)**: óptimo local que maximiza la planitud alrededor de \(d_{\rm eff}=4\).
+- **Anchura de meseta** \(|d_{\rm eff}-4|<\text{tol}\) (en décadas).
+- **RMS** local cerca de 4.
+
+> Este chequeo es **analítico‑numérico determinista** y sirve para **ilustrar** la consistencia geométrica, no como ajuste. La **selección universal** de \((p^\*,\alpha^\*)\) ya quedó fijada por principios aritméticos.
 
 ---
 
