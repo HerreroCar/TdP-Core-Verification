@@ -51,44 +51,68 @@ Encuentra un único valor κ* ≈ 1.092444 para el cual d_eff = 4.000000 ± 1×1
 
 ---
 
-### 2. `algoritmo_parametros_universales.py` — El Solver de Puntos Fijos (Conceptual)
-
-**Propósito**:  
+### 2. algoritmo_parametros_universales.py — El Solver de Puntos Fijos (Determinista)
+Propósito:
 
 Este módulo fija, **sin simulaciones ni MCMC**, los **parámetros universales** de la Teoría del Pellizco (TdP):
 
-- **p\* = 7**, por **conmensurabilidad espectral exacta** entre la dilatación geométrica del triple espectral fractal (árbol 7‑ádico) y la dilatación p‑ádica de los acoplos.
-- **α\* = 1/φ**, por **inconmensurabilidad óptima** (Hurwitz/Lagrange): el valor que **maximiza la mala aproximabilidad** por racionales y evita resonancias discretas entre niveles.
+* **p* = 7**, por **conmensurabilidad espectral exacta** entre la dilatación geométrica del triple espectral fractal (árbol 7‑ádico) y la dilatación p‑ádica de los acoplamientos.
+* **α* = 1/φ ≈ 0.618**, por **inconmensurabilidad óptima** (Hurwitz/Lagrange): el valor que **maximiza la mala aproximabilidad** por racionales y evita resonancias discretas entre niveles.
+  
+**1) ¿Por qué p = 7?**
+El sustrato geométrico de la TdP es un triple espectral (A,H,D) con álgebra asociada al grupo de Prüfer ℤ(7^∞), que define una estructura 7-ádica fractal. La consistencia entre la escala de acoplamiento y la geometría exige:
 
-## 1) ¿Por qué *p = 7*?
+ln p = ln 7 ⇒ p = 7 
 
-El sustrato geométrico de TdP es un triple espectral \((A,H,D)\) con álgebra asociada al **grupo de Prüfer** \(Z(7)^\infty\) (estructura 7‑ádica). La **igualación de escalas** exige
-\[
-\ln p = \ln 7 \quad\Rightarrow\quad p=7,
-\]
-es decir, la **dilatación p‑ádica** del acoplamiento debe coincidir con la **dilatación geométrica** del árbol 7‑ádico. El script certifica esto de forma aritmética: \(p^\*=\arg\min_{p\in\mathbb P}|\ln p-\ln 7|\) con **único cero** en \(p=7\).  
-**Referencias**: Acción Espectral (Connes–Chamseddine) para obtener GR + Yang–Mills–Higgs desde \((A,H,D)\) [^connes]; grupo de Prüfer y estructura p‑ádica [^prufer].
+Es decir, la dilatación p-ádica debe coincidir exactamente con la jerarquía geométrica del "Árbol de Historias". El script certifica esto aritméticamente mediante:
 
-## 2) ¿Por qué *α = 1/φ*?
+p* = arg min_{p ∈ ℙ} |ln p − ln 7| 
 
-La estabilidad global del punto fijo del **RG fractal** requiere suprimir resonancias discretas entre escalas. En aproximación diofántica, el **“peor” aproximable** por racionales (máxima “dureza”) es la **razón áurea**, cuya constante de Lagrange es
-\[
-\lambda(\alpha)=\liminf_{q\to\infty} q\,\|q\alpha\|, \qquad
-\sup_\alpha \lambda(\alpha)=\frac{1}{\sqrt{5}},
-\]
-alcanzado precisamente en la clase áurea (salvo transformaciones fraccionarias). Por simetría y naturalidad dimensional, TdP toma **α = 1/φ**. El script implementa la métrica canónica **\(\lambda_Q(\alpha)=\min_{q\le Q}q\,\|q\alpha\|\)**, determinista, y muestra que el **máximo** en la rejilla aparece en **\(1/φ\)**, consistente con la cota \(1/\sqrt{5}\).  
-**Referencias**: Teorema de **Hurwitz** y literatura asociada [^hurwitz-wiki] [^hurwitz-mw].
+cuyo único mínimo se encuentra en **p = 7**, confirmando que solo esta base permite una sintonía perfecta entre dinámica y geometría.
 
-## 3) Verificación geométrica (no estocástica)
+**Referencias:*
 
-Como *cross‑check* se calcula \(d_{\rm eff}(t)=-2\,\frac{d}{d\log t}\log{\rm Tr}\,e^{-tD^2}\) para un **operador tridiagonal jerárquico refinado** (escalado **mid‑bond**), con **suavizado gaussiano** en \(\log t\) (determinista) para reducir artefactos. Se reporta:
-- **\(\kappa^\*\)**: óptimo local que maximiza la planitud alrededor de \(d_{\rm eff}=4\).
-- **Anchura de meseta** \(|d_{\rm eff}-4|<\text{tol}\) (en décadas).
-- **RMS** local cerca de 4.
+Acción Espectral (Connes–Chamseddine) para obtener GR + Yang–Mills–Higgs desde (A,H,D)
+Grupo de Prüfer y estructura p-ádica 
 
-> Este chequeo es **analítico‑numérico determinista** y sirve para **ilustrar** la consistencia geométrica, no como ajuste. La **selección universal** de \((p^\*,\alpha^\*)\) ya quedó fijada por principios aritméticos.
+**2) ¿Por qué α = 1/φ?**
+La estabilidad global del punto fijo del RG fractal requiere suprimir resonancias discretas entre escalas. En teoría diofántica, el número más difícil de aproximar por racionales —y por tanto, el más estable— es la razón áurea φ. Su constante de Lagrange es:
 
----
+λ(α) = lim inf_{q→∞} q · ||qα|| 
+
+que alcanza su máximo global:
+
+sup_α λ(α) = 1/√5 ≈ 0.447 
+
+precisamente en **α = 1/φ** (salvo transformaciones fraccionarias). Por simetría y naturalidad dimensional, la TdP toma α = 1/φ.
+
+El script implementa la métrica canónica determinista:
+
+λ_Q(α) = min_{q≤Q} q · ||qα|| 
+
+y muestra que el máximo en una rejilla fina aparece en **1/φ**, en concordancia con la cota teórica.
+
+**Referencias:**
+
+Teorema de Hurwitz y literatura asociada 
+
+**3) Verificación Geométrica (No Estocástica)**
+Como verificación independiente, se calcula la dimensión espectral emergente:
+
+d_eff(t) = −2 · d log Tr(e^(−tD²)) / d log t 
+
+usando un operador tridiagonal jerárquico refinado con escalado "mid-bond" y suavizado gaussiano en log t (método determinista, sin ruido).
+
+Se reportan:
+
+* **κ*:** valor que maximiza la planitud de d_eff alrededor de 4.
+* **Anchura de la meseta**: número de décadas donde |d_eff − 4| < tol.
+* **RMS local**: desviación cuadrática media cerca de 4.
+  
+Este chequeo es **analítico-numérico y determinista**. Sirve para ilustrar la consistencia geométrica, **no como ajuste**, ya que los valores (p*, α*) ya fueron fijados previamente por principios aritméticos. 
+
+"La realidad no se postula. Se deriva."
+Y este script demuestra cómo derivarla, paso a paso, desde primeros principios. ---
 
 ### 3. `TdP_MCMC_TdP_MCMC_Fitter_Final.py` — El Medidor del ADN de Gaia
 
